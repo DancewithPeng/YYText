@@ -266,7 +266,7 @@ CGRect YYTextCGRectFitWithContentMode(CGRect rect, CGSize size, UIViewContentMod
     return rect;
 }
 
-CGFloat YYTextScreenScale() {
+CGFloat YYTextScreenScale(void) {
     static CGFloat scale;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -275,7 +275,7 @@ CGFloat YYTextScreenScale() {
     return scale;
 }
 
-CGSize YYTextScreenSize() {
+CGSize YYTextScreenSize(void) {
     static CGSize size;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -290,7 +290,7 @@ CGSize YYTextScreenSize() {
 }
 
 
-BOOL YYTextIsAppExtension() {
+BOOL YYTextIsAppExtension(void) {
     static BOOL isAppExtension = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

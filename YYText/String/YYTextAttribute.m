@@ -447,7 +447,12 @@ YYTextAttributeType YYTextAttributeGetType(NSString *name){
     if (font == (id)[NSNull null] || font == nil) {
         ((NSMutableDictionary *)_attributes)[(id)kCTFontAttributeName] = [NSNull null];
     } else {
-        CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
+        CTFontRef ctFont;
+        if ([font.fontName hasPrefix:@".SFUI"]) {
+            ctFont = CTFontCreateUIFontForLanguage(kCTFontUIFontSystem, font.pointSize, NULL);
+        } else {
+            ctFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
+        }
         if (ctFont) {
             ((NSMutableDictionary *)_attributes)[(id)kCTFontAttributeName] = (__bridge id)(ctFont);
             CFRelease(ctFont);
